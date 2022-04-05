@@ -25,18 +25,23 @@ class _MarketsPageState extends State<MarketsPage> {
     return Align(
       alignment: Alignment.topCenter,
       child: SingleChildScrollView(
-          child: SizedBox(
-        width: double.infinity,
-        child: DataTable(
-          columnSpacing: 0,
-          columns: const [
-            DataColumn(label: Text('Fav')),
-            DataColumn(label: Text('Pair')),
-            DataColumn(label: Text('price'), numeric: true),
-            DataColumn(label: Text('change'), numeric: true)
-          ],
-          rows: widget.tickers.map((ticker) => dataRow(ticker)).toList(),
-        ),
+          child: Column(
+        children: [
+          SizedBox(
+            width: double.infinity,
+            child: DataTable(
+              columnSpacing: 0,
+              columns: const [
+                DataColumn(label: Text('Fav')),
+                DataColumn(label: Text('Pair')),
+                DataColumn(label: Text('price'), numeric: true),
+                DataColumn(label: Text('change'), numeric: true)
+              ],
+              rows: widget.tickers.map((ticker) => dataRow(ticker)).toList(),
+            ),
+          ),
+          if (widget.tickers.isEmpty) const Text("No data is loaded")
+        ],
       )),
     );
   }
